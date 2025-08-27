@@ -4,36 +4,36 @@ import { textVariants } from "./text";
 export const inputTextVariants = cva(`
     border-b border-solid border-gray-200 focus:border-pink-base
     bg-transparent outline-none
-`,{
-    variants:{
-        size:{
+`, {
+    variants: {
+        size: {
             md: "pb-2 px-2"
         },
-        disabled:{
+        disabled: {
             true: "pointer-events-none"
         }
     },
-    defaultVariants:{
+    defaultVariants: {
         size: "md",
         disabled: false,
     }
 });
 
 interface InputTextProps extends VariantProps<typeof inputTextVariants>,
-    Omit<React.ComponentProps<"input">, "size" | "disabled"> {}
+    Omit<React.ComponentProps<"input">, "size" | "disabled"> { }
 
 export default function InputText({
     size,
     disabled,
     className,
     ...props
-}: InputTextProps){
+}: InputTextProps) {
     return (
         <input
-            className={cx(inputTextVariants({size, disabled}),
-            textVariants(),
-            className
-        )}
+            className={cx(inputTextVariants({ size, disabled }),
+                textVariants(),
+                className
+            )}{...props}
         />
     )
 }
